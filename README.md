@@ -1,4 +1,4 @@
-# LaraOtel OpenTelemetry Laravel Package
+# LaraOTel OpenTelemetry Laravel Package
 
 [![Total Downloads](https://poser.pugx.org/laraotel/opentelemetry-laravel/downloads)](https://packagist.org/packages/laraotel/opentelemetry-laravel)
 [![License](https://poser.pugx.org/laraotel/opentelemetry-laravel/license)](https://packagist.org/packages/laraotel/opentelemetry-laravel)
