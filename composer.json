@@ -1,7 +1,6 @@
 {
     "name": "laraotel/opentelemetry-laravel",
     "description": "This package provides a simple way to add OpenTelemetry Otel to your Laravel application.",
-    "version": "1.0.0",
     "keywords": [
         "laraotel-opentelemetry-laravel"
     ],
