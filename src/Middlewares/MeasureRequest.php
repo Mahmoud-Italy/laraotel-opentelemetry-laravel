@@ -161,7 +161,7 @@ class MeasureRequest
             TraceAttributes::SERVER_PORT => $request->getPort(),
             TraceAttributes::CLIENT_PORT => $request->server('REMOTE_PORT'),
             TraceAttributes::USER_AGENT_ORIGINAL => $request->userAgent(),
-            TraceAttributes::HTTP_FLAVOR => $request->server('SERVER_PROTOCOL'),
+            TraceAttributes::NETWORK_PROTOCOL_NAME => $request->server('SERVER_PROTOCOL'),
         ];
     }
 }
