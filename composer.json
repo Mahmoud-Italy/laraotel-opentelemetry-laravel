@@ -1,0 +1,71 @@
+{
+    "name": "laraotel/opentelemetry-laravel",
+    "description": "This package provides a simple way to add OpenTelemetry Otel to your Laravel application.",
+    "version": "1.0.0",
+    "keywords": [
+        "laraotel-opentelemetry-laravel"
+    ],
+    "license": "MIT",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "LaraOTel\\OpenTelemetryLaravel\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mahmoud Italy",
+            "email": "mahmoud.italy@outlook.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.2",
+        "open-telemetry/sdk": "^1.1",
+        "open-telemetry/exporter-otlp": "^1.1",
+        "ext-opentelemetry": "*",
+        "open-telemetry/opentelemetry-auto-laravel": "^0.0.25"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^9.0",
+        "laravel/pint": "^1.15",
+        "spatie/test-time": "^1.3",
+        "pestphp/pest": "^3.2",
+        "pestphp/pest-plugin-laravel": "^3.0",
+        "predis/predis": "^2.2",
+        "spatie/invade": "^2.0",
+        "spatie/valuestore": "^1.3",
+        "thecodingmachine/phpstan-safe-rule": "^1.2"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "LaraOTel\\OpenTelemetryLaravel\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "pest --no-coverage",
+        "test-coverage": "pest --coverage-html coverage",
+        "lint": [
+            "pint",
+            "phpstan"
+        ]
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true,
+            "phpstan/extension-installer": true,
+            "tbachert/spi": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "\\LaraOTel\\OpenTelemetryLaravel\\OpenTelemetryLaravelServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
