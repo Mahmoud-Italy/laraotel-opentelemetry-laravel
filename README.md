@@ -38,7 +38,8 @@ Next, we pull in Zipkin and Jaeger by running `docker-compose up -d`.
 We can confirm that Zipkin is up by navigating to `http://localhost:9411/` on our browser. For Jaeger, navigating
 to `http://localhost:16686/` on our browser should display the Jaeger home page.
 
-
+![fast-api](assets/jaeger.png)
+![fast-api](assets/zipkin.png)
 
 ## Installation
 
@@ -107,7 +108,7 @@ You can create a custom span by using the `LaraOTel\OpenTelemetryLaravel\Facades
 ```php
 use LaraOTel\OpenTelemetryLaravel\Facades\Measure;
 
-Measure::span('your-span-name')->measure(function() {
+Measure::span('my-web-request')->measure(function() {
     // ...
 });
 ```
@@ -115,7 +116,7 @@ Measure::span('your-span-name')->measure(function() {
 or manually start and end a span:
 
 ```php
-Measure::start('your-span-name');
+Measure::start('my-web-request');
 
 // ...
 
@@ -125,7 +126,7 @@ Measure::end();
 and you can modify the span attributes by using a closure:
 
 ```php
-Measure::start('your-span-name', function($span) {
+Measure::start('my-web-request', function($span) {
     $span->setAttribute('key', 'value');
     // ...
 });
@@ -137,7 +138,7 @@ Measure::end();
 of course, you can get the span instance by using the `Measure::span()` method:
 
 ```php
-$span = Measure::span('your-span-name');
+$span = Measure::span('my-web-request');
 $span->setAttribute('key', 'value');
 $scope = $span->activate();
 
@@ -146,6 +147,11 @@ $scope = $span->activate();
 $span->end();
 $scope->detach();
 ```
+
+
+![fast-api](assets/jaeger-result.png)
+![fast-api](assets/zipkin-result.png)
+![fast-api](assets/logJson.png)
 
 ## Available Drivers
 ```php
