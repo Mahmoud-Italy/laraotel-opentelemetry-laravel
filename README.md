@@ -6,9 +6,9 @@
 This package provides a simple way to add [OpenTelemetry](https://opentelemetry.io/) Otel to your Laravel application to Measure performance across jobs and services.
 
 ## Introduction
-Open Telemetry, or OTel for short, is a collection of tools, APIs and SDKs to collect information on how an entire system is behaving. A "system" can be a single application, a group of applications that are working together (e.g microservices) and even queued jobs across workers.
+[OpenTelemetry](https://opentelemetry.io/), or OTel for short, is an Observability tools designed to create and manage telemetry data such as [traces](https://opentelemetry.io/docs/concepts/signals/traces/), [mterics](https://opentelemetry.io/docs/concepts/signals/metrics/) and [logs](https://opentelemetry.io/docs/concepts/signals/logs/), to collect information on how your entire system is behaving.
 
-You can easily measure performance of a Laravel powered system. It can transmit the results to a tracing tool like Jaeger or Aspecto, Zikpin or Json file, text etc
+You can easily measure performance of a Laravel powered system. It can transmit the results to a tracing tool like Jaeger or Zikpin or Json file, text.. etc
 
 ## Bundle Zikpin and Jaeger into your Application
 To visualize traces exported from our application, we need to integrate open source tracing
@@ -38,7 +38,8 @@ Next, we pull in Zipkin and Jaeger by running `docker-compose up -d`.
 We can confirm that Zipkin is up by navigating to `http://localhost:9411/` on our browser. For Jaeger, navigating
 to `http://localhost:16686/` on our browser should display the Jaeger home page.
 
-add Image here
+![laraotel](assets/jaeger.png)
+![laraotel](assets/zipkin.png)
 
 ## Installation
 
@@ -109,7 +110,7 @@ You can create a custom span by using the `LaraOTel\OpenTelemetryLaravel\Facades
 ```php
 use LaraOTel\OpenTelemetryLaravel\Facades\Measure;
 
-Measure::span('your-span-name')->measure(function() {
+Measure::span('my-web-request')->measure(function() {
     // ...
 });
 ```
@@ -117,7 +118,7 @@ Measure::span('your-span-name')->measure(function() {
 or manually start and end a span:
 
 ```php
-Measure::start('your-span-name');
+Measure::start('my-web-request');
 
 // ...
 
@@ -127,7 +128,7 @@ Measure::end();
 and you can modify the span attributes by using a closure:
 
 ```php
-Measure::start('your-span-name', function($span) {
+Measure::start('my-web-request', function($span) {
     $span->setAttribute('key', 'value');
     // ...
 });
@@ -139,7 +140,7 @@ Measure::end();
 of course, you can get the span instance by using the `Measure::span()` method:
 
 ```php
-$span = Measure::span('your-span-name');
+$span = Measure::span('my-web-request');
 $span->setAttribute('key', 'value');
 $scope = $span->activate();
 
@@ -148,6 +149,11 @@ $scope = $span->activate();
 $span->end();
 $scope->detach();
 ```
+
+![laraotel](assets/jaeger-result.png)
+![laraotel](assets/zipkin-result.png)
+![laraotel](assets/log-json.png)
+![laraotel](assets/openTelemetry-collection.png)
 
 ## Available Drivers
 ```php
@@ -208,7 +214,7 @@ Logger::error('my log message');
 ```
 
 ## UML Diagram of the package design
-
+![laraotel](assets/openTelemetry-collection.png)
 
 ## Testing
 
