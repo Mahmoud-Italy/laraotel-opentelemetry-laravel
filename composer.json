@@ -20,8 +20,8 @@
     ],
     "require": {
         "php": ">=8.2",
-        "open-telemetry/sdk": "^1.1",
-        "open-telemetry/exporter-otlp": "^1.1",
+        "open-telemetry/sdk": "*",
+        "open-telemetry/exporter-otlp": "*",
         "ext-opentelemetry": "*",
         "open-telemetry/opentelemetry-auto-laravel": "^0.0.25"
     },
