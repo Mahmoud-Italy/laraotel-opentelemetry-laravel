@@ -1,6 +1,6 @@
 {
     "name": "laraotel/opentelemetry-laravel",
-    "description": "This package provides a simple way to add OpenTelemetry Otel to your Laravel application.",
+    "description": "This package provides a simple way to use Telemetry From OpenTelemetry Otel to your Laravel application to Measure performance across jobs and services.",
     "keywords": [
         "laraotel-opentelemetry-laravel"
     ],
