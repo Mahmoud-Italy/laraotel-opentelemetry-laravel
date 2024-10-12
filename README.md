@@ -47,7 +47,7 @@ You can install the package via composer:
 Note: The opentelemetry extension must be enabled on your machine
 
 ```bash
-composer require laraotel/opentelemetry-laravel:0.0.3
+composer require laraotel/opentelemetry-laravel:2.0.1
 ```
 
 ## Usage
