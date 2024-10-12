@@ -1,4 +1,7 @@
-# LaraOtel OpenTelemetry Laravel Package
+# LaraOTel OpenTelemetry Laravel Package
+
+<a href="https://packagist.org/packages/laraotel/opentelemetry-laravel"><img src="https://poser.pugx.org/laraotel/opentelementry-laravel/d/total.svg" alt="Total Downloads"></a>
+[![License](https://poser.pugx.org/overtrue/laravel-open-telemetry/license)](https://packagist.org/packages/laraotel/opentelemetry-laravel)
 
 This package provides a simple way to add [OpenTelemetry](https://opentelemetry.io/) Otel to your Laravel application to Measure performance across jobs and services.
 
@@ -35,7 +38,7 @@ Next, we pull in Zipkin and Jaeger by running `docker-compose up -d`.
 We can confirm that Zipkin is up by navigating to `http://localhost:9411/` on our browser. For Jaeger, navigating
 to `http://localhost:16686/` on our browser should display the Jaeger home page.
 
-add Image here
+
 
 ## Installation
 
@@ -71,7 +74,7 @@ protected $middleware = [
 ```
 
 > Laravel 11
-in `bootstrap/app.php`
+Appending global middleware in `bootstrap/app.php`
 
 ```php
 ->withMiddleware(function (Middleware $middleware) {
