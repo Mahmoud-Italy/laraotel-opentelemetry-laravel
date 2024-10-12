@@ -76,8 +76,7 @@ protected $middleware = [
 ];
 ```
 
-> Laravel 11
-in `bootstrap/app.php`
+> In laravel 11 you can not register in the kernel.php the middlewares anymore. You can register your global middleware in `bootstrap/app.php`
 
 ```php
 ->withMiddleware(function (Middleware $middleware) {
@@ -153,7 +152,6 @@ $scope->detach();
 ![laraotel](assets/jaeger-result.png)
 ![laraotel](assets/zipkin-result.png)
 ![laraotel](assets/log-json.png)
-![laraotel](assets/openTelemetry-collection.png)
 
 ## Available Drivers
 ```php
