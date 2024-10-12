@@ -1,5 +1,8 @@
 # LaraOtel OpenTelemetry Laravel Package
 
+[![Total Downloads](https://poser.pugx.org/laraotel/opentelemetry-laravel/downloads)](https://packagist.org/packages/laraotel/opentelemetry-laravel)
+[![License](https://poser.pugx.org/laraotel/opentelemetry-laravel/license)](https://packagist.org/packages/laraotel/opentelemetry-laravel)
+
 This package provides a simple way to add [OpenTelemetry](https://opentelemetry.io/) Otel to your Laravel application to Measure performance across jobs and services.
 
 ## Introduction
@@ -42,8 +45,10 @@ add Image here
 You can install the package via composer:
 
 ```bash
-composer require laraotel/opentelemetry-laravel
+composer require laraotel/opentelemetry-laravel:0.0.3
 ```
+
+Note: The opentelemetry extension must be enabled on your machine
 
 ## Usage
 
