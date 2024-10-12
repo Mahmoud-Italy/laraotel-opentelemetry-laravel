@@ -146,7 +146,10 @@ return [
 
         'zipkin' => [
             'driver' => 'zipkin',
+            'transport' => 'http',
+            'span_exporter' => 'otlp',
             'endpoint' => env('OTEL_EXPORTER_ZIPKIN_ENDPOINT', 'http://zipkin:9411/api/v2/spans'),
+            'content_type' => 'application/json',
         ],
 
         'http-json' => [

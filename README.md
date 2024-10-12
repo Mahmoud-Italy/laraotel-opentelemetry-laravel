@@ -3,12 +3,12 @@
 [![Total Downloads](https://poser.pugx.org/laraotel/opentelemetry-laravel/downloads)](https://packagist.org/packages/laraotel/opentelemetry-laravel)
 [![License](https://poser.pugx.org/laraotel/opentelemetry-laravel/license)](https://packagist.org/packages/laraotel/opentelemetry-laravel)
 
-This package provides a simple way to add [OpenTelemetry](https://opentelemetry.io/) Otel to your Laravel application to Measure performance across jobs and services.
+This package provides a simple way to use Telemetry From [OpenTelemetry](https://opentelemetry.io/) Otel to your Laravel application to Measure performance across jobs and services.
 
 ## Introduction
 [OpenTelemetry](https://opentelemetry.io/), or OTel for short, is an Observability tools designed to create and manage telemetry data such as [traces](https://opentelemetry.io/docs/concepts/signals/traces/), [mterics](https://opentelemetry.io/docs/concepts/signals/metrics/) and [logs](https://opentelemetry.io/docs/concepts/signals/logs/), to collect information on how your entire system is behaving.
 
-You can easily measure performance of a Laravel powered system. It can transmit the results to a tracing tool like Jaeger or Zikpin or Json file, text.. etc
+You can easily measure performance of a Laravel powered system. It can transmit the results to a tracing tool like Jaeger, Zikpin, Json file, text.. etc
 
 ## Bundle Zikpin and Jaeger into your Application
 To visualize traces exported from our application, we need to integrate open source tracing
@@ -44,11 +44,12 @@ to `http://localhost:16686/` on our browser should display the Jaeger home page.
 ## Installation
 
 You can install the package via composer:
-Note: The opentelemetry extension must be enabled on your machine
 
 ```bash
 composer require laraotel/opentelemetry-laravel:2.0.1
 ```
+
+Important Note: The opentelemetry extension must be enabled on your machine
 
 ## Usage
 
@@ -179,7 +180,10 @@ $scope->detach();
 
     'zipkin' => [
         'driver' => 'zipkin',
+        'transport' => 'http',
+        'span_exporter' => 'otlp',
         'endpoint' => env('OTEL_EXPORTER_ZIPKIN_ENDPOINT', 'http://zipkin:9411/api/v2/spans'),
+        'content_type' => 'application/json',
     ],
 
     'http-json' => [
