@@ -1,7 +1,7 @@
 # LaraOTel OpenTelemetry Laravel Package
 
 [![Total Downloads](https://poser.pugx.org/laraotel/opentelemetry-laravel/downloads)](https://packagist.org/packages/laraotel/opentelemetry-laravel)
-[![License](https://poser.pugx.org/laraotel/opentelemetry-laravel/license)]
+[![License](https://poser.pugx.org/laraotel/opentelemetry-laravel/license)](https://poser.pugx.org/laraotel/opentelemetry-laravel/license)
 
 This package provides a simple way to use Telemetry From [OpenTelemetry](https://opentelemetry.io/) Otel to your Laravel application to Measure performance across jobs and services.
 
