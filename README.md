@@ -46,7 +46,7 @@ to `http://localhost:16686/` on our browser should display the Jaeger home page.
 You can install the package via composer:
 
 ```bash
-composer require laraotel/opentelemetry-laravel:2.0.1
+composer require laraotel/opentelemetry-laravel:2.0.2
 ```
 
 Important Note: The [opentelemetry extension](https://opentelemetry.io/docs/zero-code/php/) must be enabled on your machine
