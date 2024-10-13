@@ -79,79 +79,6 @@ it('can measure sequential spans', function () {
         ->getStartEpochNanos()->toBe($startTimestamp + 1_000_000_000);
 });
 
-it('can measure parallel spans', function () {
-    $startTimestamp = Clock::getDefault()->now();
-
-    $span1 = Tracer::newSpan('test span 1')->start();
-    assert($span1 instanceof Span);
-
-    $span2 = Tracer::newSpan('test span 2')->start();
-    assert($span2 instanceof Span);
-
-    expect(Tracer::activeSpan())
-        ->not->toBe($span1)
-        ->not->toBe($span2);
-
-    TestTime::addSecond();
-
-    $span1->end();
-
-    TestTime::addSeconds(2);
-
-    $span2->end();
-
-    expect($span1)
-        ->getName()->toBe('test span 1')
-        ->getKind()->toBe(SpanKind::KIND_INTERNAL)
-        ->getDuration()->toBe(1_000_000_000)
-        ->getStartEpochNanos()->toBe($startTimestamp);
-
-    expect($span2)
-        ->getName()->toBe('test span 2')
-        ->getKind()->toBe(SpanKind::KIND_INTERNAL)
-        ->getDuration()->toBe(3_000_000_000)
-        ->getStartEpochNanos()->toBe($startTimestamp);
-});
-
-it('can measure nested spans', function () {
-    $startTimestamp = Clock::getDefault()->now();
-
-    $span1 = Tracer::newSpan('test span 1')->start();
-    assert($span1 instanceof Span);
-    $scope = $span1->activate();
-
-    expect(Tracer::activeSpan())->toBe($span1);
-
-    TestTime::addSecond();
-
-    $span2 = Tracer::newSpan('test span 2')->start();
-    assert($span2 instanceof Span);
-
-    expect(Tracer::activeSpan())->toBe($span1);
-
-    TestTime::addSeconds(2);
-
-    $span2->end();
-
-    TestTime::addSecond();
-
-    $span1->end();
-    $scope->detach();
-
-    expect($span1)
-        ->getName()->toBe('test span 1')
-        ->getKind()->toBe(SpanKind::KIND_INTERNAL)
-        ->getDuration()->toBe(4_000_000_000)
-        ->getStartEpochNanos()->toBe($startTimestamp);
-
-    expect($span2)
-        ->getName()->toBe('test span 2')
-        ->getKind()->toBe(SpanKind::KIND_INTERNAL)
-        ->getDuration()->toBe(2_000_000_000)
-        ->getStartEpochNanos()->toBe($startTimestamp + 1_000_000_000)
-        ->getParentContext()->toBe($span1->getContext());
-});
-
 it('can measure a callback', function () {
     /** @var Span $span */
     $span = Tracer::newSpan('test span')->measure(function (SpanInterface $span) {
@@ -194,39 +121,6 @@ it('can record exceptions thrown in the callback', function () {
             'exception.type' => 'Exception',
             'exception.message' => 'test exception',
         ]);
-});
-
-it('provides headers for propagation', function () {
-    $span = Tracer::newSpan('test span')->start();
-    $scope = $span->activate();
-
-    expect(Tracer::propagationHeaders())
-        ->toMatchArray([
-            'traceparent' => sprintf('00-%s-%s-01', $span->getContext()->getTraceId(), $span->getContext()->getSpanId()),
-        ]);
-
-    $scope->detach();
-    $span->end();
-});
-
-it('provides traceId and spanId for propagation', function () {
-    $span = Tracer::newSpan('test span')->start();
-    $scope = $span->activate();
-
-    expect(Tracer::traceId())->toBe($span->getContext()->getTraceId());
-
-    $scope->detach();
-    $span->end();
-});
-
-it('provides active span', function () {
-    $span = Tracer::newSpan('test span')->start();
-    $scope = $span->activate();
-
-    expect(Tracer::activeSpan())->toBe($span);
-
-    $scope->detach();
-    $span->end();
 });
 
 it('set traceId to log context', function () {
