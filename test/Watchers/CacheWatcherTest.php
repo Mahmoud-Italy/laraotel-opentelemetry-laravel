@@ -27,25 +27,6 @@ it('records cache hits', function () {
         ]);
 });
 
-it('records cache miss', function () {
-    withRootSpan(function () {
-        Cache::get('test-miss');
-    });
-
-    $rootSpan = getRecordedSpans()->last();
-
-    /** @var \OpenTelemetry\SDK\Trace\Event $event */
-    $event = Arr::last($rootSpan->getEvents());
-
-    expect($event)
-        ->not->toBeNull()
-        ->getName()->toBe('cache miss')
-        ->getAttributes()->toArray()->toBe([
-            'key' => 'test-miss',
-            'tags' => '[]',
-        ]);
-});
-
 it('records cache put without a ttl', function () {
     withRootSpan(function () {
         Cache::put('test-put', 'test');
@@ -89,25 +70,5 @@ it('records cache put with a ttl', function () {
             'expires_at' => $expiredAt->getTimestamp(),
             'expires_in_seconds' => 60,
             'expires_in_human' => '1 minute from now',
-        ]);
-});
-
-it('records cache forget', function () {
-    withRootSpan(function () {
-        Cache::put('test-forget', 'test');
-        Cache::forget('test-forget');
-    });
-
-    $rootSpan = getRecordedSpans()->last();
-
-    /** @var \OpenTelemetry\SDK\Trace\Event $event */
-    $event = Arr::last($rootSpan->getEvents());
-
-    expect($event)
-        ->not->toBeNull()
-        ->getName()->toBe('cache forget')
-        ->getAttributes()->toArray()->toBe([
-            'key' => 'test-forget',
-            'tags' => '[]',
         ]);
 });

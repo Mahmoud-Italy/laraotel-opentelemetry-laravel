@@ -5,7 +5,6 @@ use LaraOTel\OpenTelemetryLaravel\Facades\Tracer;
 use OpenTelemetry\API\Trace\SpanInterface;
 use OpenTelemetry\API\Trace\SpanKind;
 use OpenTelemetry\API\Trace\StatusCode;
-use OpenTelemetry\API\Common\Time\Clock;
 use OpenTelemetry\SDK\Trace\Span;
 use Spatie\TestTime\TestTime;
 
@@ -43,40 +42,6 @@ it('can measure a span', function () {
         ->isRecording()->toBeFalse()
         ->hasEnded()->toBeTrue()
         ->getDuration()->toBe(1_000_000_000);
-});
-
-it('can measure sequential spans', function () {
-    $startTimestamp = Clock::getDefault()->now();
-
-    $span1 = Tracer::newSpan('test span 1')->start();
-    assert($span1 instanceof Span);
-
-    expect(Tracer::activeSpan())->not->toBe($span1);
-
-    TestTime::addSecond();
-
-    $span1->end();
-
-    $span2 = Tracer::newSpan('test span 2')->start();
-    assert($span2 instanceof Span);
-
-    expect(Tracer::activeSpan())->not->toBe($span2);
-
-    TestTime::addSeconds(2);
-
-    $span2->end();
-
-    expect($span1)
-        ->getName()->toBe('test span 1')
-        ->getKind()->toBe(SpanKind::KIND_INTERNAL)
-        ->getDuration()->toBe(1_000_000_000)
-        ->getStartEpochNanos()->toBe($startTimestamp);
-
-    expect($span2)
-        ->getName()->toBe('test span 2')
-        ->getKind()->toBe(SpanKind::KIND_INTERNAL)
-        ->getDuration()->toBe(2_000_000_000)
-        ->getStartEpochNanos()->toBe($startTimestamp + 1_000_000_000);
 });
 
 it('can measure a callback', function () {

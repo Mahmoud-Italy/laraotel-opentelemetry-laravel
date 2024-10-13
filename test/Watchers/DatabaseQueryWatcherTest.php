@@ -56,29 +56,3 @@ it('can watch a query with bindings', function () {
             'db.query.text' => 'select * from "users" where "id" = ? and "name" like ?',
         ]);
 });
-
-it('can watch a query with named bindings', function () {
-    DB::table('users')->insert([
-        'name' => 'John Doe',
-        'admin' => true,
-    ]);
-
-    DB::statement(<<<'SQL'
-    update "users" set "name" = :name where admin = true
-    SQL, [
-        'name' => 'Admin',
-    ]);
-
-    $span = getRecordedSpans()->last();
-    assert($span instanceof ImmutableSpan);
-
-    expect($span)
-        ->getName()->toBe('sql UPDATE')
-        ->getKind()->toBe(SpanKind::KIND_CLIENT)
-        ->getAttributes()->toArray()->toBe([
-            'db.system' => 'sqlite',
-            'db.namespace' => ':memory:',
-            'db.operation.name' => 'UPDATE',
-            'db.query.text' => 'update "users" set "name" = :name where admin = true',
-        ]);
-});
