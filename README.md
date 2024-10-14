@@ -75,7 +75,7 @@ protected $middleware = [
 ];
 ```
 
-> In laravel 11 you can not register in the kernel.php the middlewares anymore. You can register your global middleware in `bootstrap/app.php`
+In laravel 11 you can not register in the kernel.php the middlewares anymore. You can register your global middleware in `bootstrap/app.php`
 
 ```php
 ->withMiddleware(function (Middleware $middleware) {
