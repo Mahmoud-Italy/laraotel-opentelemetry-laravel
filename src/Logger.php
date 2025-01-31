@@ -4,7 +4,6 @@ namespace LaraOTel\OpenTelemetryLaravel;
 
 use OpenTelemetry\API\Logs\LoggerInterface;
 use OpenTelemetry\API\Logs\LogRecord;
-use OpenTelemetry\API\Logs\Map\Psr3;
 use OpenTelemetry\API\Common\Time\Clock;
 use Psr\Log\LogLevel;
 
@@ -40,10 +39,25 @@ class Logger
     {
         $logRecord = (new LogRecord($message))
             ->setTimestamp(Clock::getDefault()->now())
-            ->setSeverityNumber(Psr3::fromPsr3($level))
+            ->setSeverityNumber($this->mapSeverityNumber($level)) // Use manual mapping
             ->setSeverityText($level)
             ->setAttributes($context);
 
         $this->logger->emit($logRecord);
+    }
+
+    private function mapSeverityNumber(string $level): int {
+        return match ($level) {
+            LogLevel::EMERGENCY => 1,  // Most severe
+            LogLevel::ALERT => 2,
+            LogLevel::CRITICAL => 3,
+            LogLevel::ERROR => 4,
+            LogLevel::WARNING => 5,
+            LogLevel::NOTICE => 6,
+            LogLevel::INFO => 7,
+            LogLevel::DEBUG => 8,  // Least severe
+
+            default => 0, // Unknown level
+        };
     }
 }
