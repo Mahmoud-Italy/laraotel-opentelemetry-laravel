@@ -61,7 +61,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "\\LaraOTel\\OpenTelemetryLaravel\\OpenTelemetryLaravelServiceProvider"
+                "\\LaraOTel\\OpenTelemetryLaravel\\OpenTelemetryServiceProvider"
             ]
         }
     },
