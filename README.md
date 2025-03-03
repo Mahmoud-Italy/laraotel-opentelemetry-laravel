@@ -10,7 +10,7 @@ This package provides a simple way to use Telemetry From [OpenTelemetry](https:/
 
 You can easily measure performance of a Laravel powered system. It can transmit the results to a tracing tool like Jaeger, Zipkin Or you can export data into Console, Json, text etc..
 
-## Bundle Zipkin and Jaeger into your Application
+## Bundle Zipkin and Jaeger into your Application 
 To visualize traces exported from our application, we need to integrate open source tracing
 tools [Zipkin](https://zipkin.io/) and [Jaeger](https://www.jaegertracing.io/) into our setup using docker. 
 
