@@ -45,8 +45,8 @@ class DatabaseQueryWatcher implements WatcherInterface
             TraceAttributes::DB_SYSTEM => $query->connection->getDriverName(),
             TraceAttributes::DB_NAMESPACE => $query->connection->getDatabaseName(),
             TraceAttributes::DB_OPERATION_NAME => $operationName,
-            TraceAttributes::DB_QUERYTEXT => $query->sql,
-            TraceAttributes::DB_COLLECTIONANEM => $table,
+            TraceAttributes::DB_QUERY_TEXT => $query->sql,
+            TraceAttributes::DB_COLLECTION_NAME => $table,
         ]);
 
         $span->end();
