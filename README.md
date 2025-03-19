@@ -49,7 +49,7 @@ You can install the package via composer:
 composer require laraotel/opentelemetry-laravel:2.0.8
 ```
 
-***Important Note: The [opentelemetry extension](https://opentelemetry.io/docs/zero-code/php/) must be enabled on your machine.***
+***Important Note: The [opentelemetry extension](https://opentelemetry.io/docs/zero-code/php/) must be enabled on your machine.*** 
 ## Usage
 
 ### Configuration
