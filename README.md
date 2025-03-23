@@ -14,7 +14,7 @@ You can easily measure performance of a Laravel powered system. It can transmit 
 To visualize traces exported from our application, we need to integrate open source tracing
 tools [Zipkin](https://zipkin.io/) and [Jaeger](https://www.jaegertracing.io/) into our setup using docker.
 
-First, we create a `docker-compose.yaml` file in the root of our project, with content as follows:
+First, we create a `docker-compose.yaml` file in the root of our project, with content as follows: 
 
 ```yaml
 version: '3.7'
