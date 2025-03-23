@@ -6,7 +6,7 @@
 This package provides a simple way to use Telemetry From [OpenTelemetry](https://opentelemetry.io/) OTel into your Laravel application to Measure performance across jobs and services, database queries, events etc..
    
 ## Introduction 
-[OpenTelemetry](https://opentelemetry.io/), or OTel for short, is an Observability tools designed to create and manage telemetry data such as [traces](https://opentelemetry.io/docs/concepts/signals/traces/), [metrics](https://opentelemetry.io/docs/concepts/signals/metrics/) and [logs](https://opentelemetry.io/docs/concepts/signals/logs/), to collect information on how your entire system is behaving.  
+[OpenTelemetry](https://opentelemetry.io/), or OTel for short, is an Observability tools designed to create and manage telemetry data such as [traces](https://opentelemetry.io/docs/concepts/signals/traces/), [metrics](https://opentelemetry.io/docs/concepts/signals/metrics/) and [logs](https://opentelemetry.io/docs/concepts/signals/logs/), to collect information on how your entire system is behaving. 
 
 You can easily measure performance of a Laravel powered system. It can transmit the results to a tracing tool like Jaeger, Zipkin Or you can export data into Console, Json, text etc.. 
  
