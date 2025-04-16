@@ -22,7 +22,7 @@
         "open-telemetry/sdk": "*",
         "open-telemetry/exporter-otlp": "*",
         "ext-opentelemetry": "*",
-        "open-telemetry/opentelemetry-auto-laravel": "^0.0.25"
+        "open-telemetry/opentelemetry-auto-laravel": "^1.1"
     },
     "require-dev": {
         "orchestra/testbench": "^9.0",
